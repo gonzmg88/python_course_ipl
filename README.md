@@ -10,7 +10,7 @@ The goal will be to make some predictions for the dogs vs cats classification pr
 * Download in advance:
   * Anaconda for python 3.5 https://www.continuum.io/downloads 
   * Train images: https://www.dropbox.com/s/8lbkqktfofzjraj/train.zip?raw=1
-
+  * clone/download this repo.
 ## Program
 The workshop outline is the following:
 * Preliminars:
