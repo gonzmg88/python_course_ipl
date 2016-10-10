@@ -11935,12 +11935,14 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Why-python?">Why python?<a class="anchor-link" href="#Why-python?">&#182;</a></h3><p>Specifically dessigned to be:</p>
-<ul>
+<h3 id="Why-python?">Why python?<a class="anchor-link" href="#Why-python?">&#182;</a></h3><ul>
 <li>It's <strong>free</strong></li>
+<li>Specifically dessigned to be:<ul>
 <li>Easy to read</li>
 <li>Easy to learn</li>
 <li>Easy to maintain</li>
+</ul>
+</li>
 <li>It can be easily integrated with C, C++ and Java.</li>
 <li><strong>It has a great ecosystem of packages</strong> for scientific computing, for scripting and for web development.</li>
 </ul>
@@ -11971,6 +11973,7 @@ a.anchor-link {
 <li><a href="http://matplotlib.org/">matplotlib</a>: for graphics (also inspired by Matlab)</li>
 <li><a href="http://pandas.pydata.org/">pandas</a>: for tabular (DataFrame) structures (like R's Dataframe).</li>
 <li><a href="http://scikit-learn.org/stable/">scikit-learn</a>: for machine learning algorithms (really good documentation). <a href="http://scikit-learn.org/stable/modules/svm.html">example</a></li>
+<li><a href="http://docs.scipy.org/doc/scipy-0.18.1/reference/">SciPy</a>. Optimization, interpolation, fourier transform, sparse matrices...</li>
 </ul>
 
 </div>
@@ -11995,7 +11998,6 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Scientific (good to know) packages:</p>
 <ul>
-<li><a href="http://docs.scipy.org/doc/scipy-0.18.1/reference/">SciPy</a>. Optimization, interpolation, fourier transform, sparse matrices...</li>
 <li><a href="http://bokeh.pydata.org/en/latest/docs/user_guide/quickstart.html">bokeh</a> library for interactive graphics</li>
 <li><a href="http://stanford.edu/~mwaskom/software/seaborn/tutorial/regression.html">seaborn</a> highlevel graphics based on matplotlib.</li>
 <li>Deep learning (using GPU):<ul>
@@ -12097,13 +12099,8 @@ a.anchor-link {
 <li>Download &amp; install python 3.5 anaconda: <a href="https://www.continuum.io/downloads">https://www.continuum.io/downloads</a> (The 150 packages together with conda package manager).</li>
 <li>Download repository of the talk: (<a href="https://github.com/gonzmg88/python_course_ipl">https://github.com/gonzmg88/python_course_ipl</a>). (clone repo or download zip from <a href="https://github.com/gonzmg88/python_course_ipl/archive/master.zip">here</a>)</li>
 <li>Open terminal in the folder of the repository of the talk.</li>
-<li>Execute: <code>conda env create -f environment.yml --name charla_python</code></li>
-<li>Execute: <ul>
-<li><code>source activate charla_python</code> (Linux, OS X)</li>
-<li><code>activate charla_python</code> (Windows)</li>
-</ul>
-</li>
-<li>Execute: <code>jupyter notebook</code> and select the notebook <a href="http://localhost:8888/notebooks/basic_syntax.ipynb"><code>basic_python.ipynb</code></a>. </li>
+<li>Copy the <code>train.zip</code> in the folder of the repository. </li>
+<li>Execute: <code>jupyter notebook</code> and select the notebook <a href="http://localhost:8888/notebooks/basic_syntax.ipynb"><code>basic_syntax.ipynb</code></a>. </li>
 </ul>
 
 </div>
@@ -12120,27 +12117,6 @@ a.anchor-link {
 <li><a href="http://conda.pydata.org/docs/_downloads/conda-cheatsheet.pdf">conda cheatsheet</a>.</li>
 <li><a href="http://stiglerdiet.com/blog/2015/Nov/24/my-python-environment-workflow-with-conda/">Reasons to use conda</a></li>
 </ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="jupyter-basic-usage">jupyter <em>basic</em> usage<a class="anchor-link" href="#jupyter-basic-usage">&#182;</a></h2><ul>
-<li><code>Insert</code> &gt; <code>Cell Above</code> / <code>Cell Bellow</code></li>
-<li><code>Edit</code> &gt; <code>Split Cell</code> / <code>Move Cell Up/Down</code></li>
-<li><code>Help</code> &gt; <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/"><code>Markdown syntax help</code></a>. <span class="alert alert-info">In markdown cells you can embed </span> <span class="alert alert-danger"> HMTL</span></li>
-<li>Double click on the cell to edit the content and see the source</li>
-<li>In markdown cells you can write $\LaTeX$ equations:
-$$ \mathcal{L}(\omega) = \sum_{i=0}^N \Big(f(x_i;\omega)-y_i\Big)^2 $$</li>
-<li><code>Cell</code> &gt; <code>Cell type</code> to distinguish between code cells and text (markdown) cells.</li>
-<li><code>File</code> &gt; <code>Download as</code> &gt; <code>HTML</code> to download the content of the notebook as a plain HMTL.</li>
-<li>This presentation is done in jupyter:</li>
-</ul>
-<p><code>jupyter nbconvert --to slides PythonCourse.ipynb --reveal-prefix=reveal.js --post serve</code></p>
 
 </div>
 </div>
@@ -12200,6 +12176,28 @@ Namespaces are one honking great idea -- let&#39;s do more of those!
 </div>
 </div>
 
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="jupyter-basic-usage">jupyter <em>basic</em> usage<a class="anchor-link" href="#jupyter-basic-usage">&#182;</a></h2><ul>
+<li><code>Insert</code> &gt; <code>Cell Above</code> / <code>Cell Bellow</code></li>
+<li><code>Edit</code> &gt; <code>Split Cell</code> / <code>Move Cell Up/Down</code></li>
+<li><code>Help</code> &gt; <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/"><code>Markdown syntax help</code></a>. <span class="alert alert-info">In markdown cells you can embed </span> <span class="alert alert-danger"> HMTL</span></li>
+<li>Double click on the cell to edit the content and see the source</li>
+<li><code>Ctrl + Enter</code> execute current cell </li>
+<li>In markdown cells you can write $\LaTeX$ equations:
+$$ \mathcal{L}(\omega) = \sum_{i=0}^N \Big(f(x_i;\omega)-y_i\Big)^2 $$</li>
+<li><code>Cell</code> &gt; <code>Cell type</code> to distinguish between code cells and text (markdown) cells.</li>
+<li><code>File</code> &gt; <code>Download as</code> &gt; <code>HTML</code> to download the content of the notebook as a plain HMTL.</li>
+<li>This presentation is done in jupyter:</li>
+</ul>
+<p><code>jupyter nbconvert --to slides PythonCourse.ipynb --reveal-prefix=reveal.js --post serve</code></p>
+
+</div>
+</div>
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
