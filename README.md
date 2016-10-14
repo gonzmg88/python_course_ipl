@@ -1,4 +1,4 @@
-# Basic python workshop
+# python workshop
 This repo contains a basic python course for the [image and signal processing group](http://isp.uv.es/) at ipl. It covers basic syntax and  some scientific python packages (`numpy`, `matplotlib` and `sklearn`) with focus in image classification. 
 
 [slides](https://gonzmg88.github.io/python_course_ipl/index.slides.html).
