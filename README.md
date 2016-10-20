@@ -14,6 +14,8 @@ The goal will be to make some predictions for the dogs vs cats classification pr
 
 ## Program
 The workshop outline is the following:
+
+### Day 1
 * Preliminars:
   * What's python?
   * Why python?
@@ -23,16 +25,21 @@ The workshop outline is the following:
   * Basic syntax and core structures (loops, functions, classes, lists, dicts, ifs, strings...)
   * file operations (list directory, r/w files, get data from web,...)
   * Example dogs vs cats.
-* **coffee break!!**
 * `numpy` (`numpy.ipynb`):
   * basic matrices
   * read image as matrix
   * basics on matrix transformations.
+
+### Day 2
+* Summary of first day.
+* `numpy`:
+  * revisit basic stuff of matrices.
   * Construct data set for machine learning task.
 * `matplotlib`:
   * plot image, histogram
 * `scikit-learn` (`machine_learning.ipynb`):
   * predict label on image
+  * hyper-parameter selection via cross-validation
   * show prediction metrics (accuracy, ROC, confussion matrix).
 * Deep learning (`deep_learning.ipynb`):
   * Use pretrained CNN with `keras`.
