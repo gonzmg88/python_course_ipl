@@ -6,10 +6,12 @@ from scipy import ndimage
 import skimage.transform as sktrans
 from sklearn import metrics
 import matplotlib.pyplot as plt
+#import keras.backend as K
+
 
 def image_files(train_file = "train.zip",train_folder = "train"):
     """ Download the training data from dropbox if it has not been downloaded and extract in train_folder folder."""
-    if not os.path.exists(train_file):
+    if not os.path.exists(train_folder) and not os.path.exists(train_file):
         print("Proceding to download the data. This process may take some time..")
         urllib.request.urlretrieve("https://www.dropbox.com/s/8lbkqktfofzjraj/train.zip?raw=1", train_file)
         print("Done")
@@ -25,48 +27,54 @@ def image_files(train_file = "train.zip",train_folder = "train"):
     else:
         print("Data has already been extracted")
 
-    return [os.path.join("train",img) for img in os.listdir("train")]
+    return [os.path.join(train_folder,img) for img in os.listdir(train_folder)]
 
 
-def sample_image_set(all_files, n_images=4000,image_size=(50,50,3)):
-    """ Returns a sample of n_images flattened and compressed to size image_size
-    If image_size is (a,b,1) or (a,b) images will be converted to gray scale.
-    """
-    index_files_selected = np.random.choice(len(all_files),size=n_images,replace=False)
-    feature_array = np.ndarray((n_images,np.multiply.reduce(image_size)),dtype=np.float64)
-    label = np.ndarray((n_images),dtype=np.uint8)
-    for i,indice in enumerate(index_files_selected):
-        image = ndimage.imread(all_files[indice])
-        image_down = sktrans.resize(image, image_size)
-        if (len(image_size) < 3) or image_size[2] == 1:
-            image_down = np.mean(image_down,axis=2) 
-        feature_array[i] = image_down.ravel() # equivalent to feature_array[i,:]
-        label[i] = "dog" in all_files[indice]
+def load_image_set(all_files, image_size=(3,50,50)):
+    """ load images into numpy arrays  order (channel,rows,cols).
+    :param all_files: files to load
+    :param image_size: size to resize the images
     
-    return feature_array,label
-
-def training_test_datasets(all_files,n_images_train=500,n_images_test=500,image_size=(50,50,3)):
+    :return feature_array,label resized images as numpy arrays and 1D numpy array containing its label.
+    
+    :Note the resulted array (feature_array) will be a 4D np.array with shape (len(all_files),)+image_size
+    """
+    # assert K.image_dim_ordering() == "th", "functions prepared to load data on NCHW format channel,height,width"
+    feature_array = np.ndarray((len(all_files),)+image_size,dtype=np.float32)
+    label = np.ndarray((len(all_files),),dtype=np.uint8)
+    image_size_reord = (image_size[1],image_size[2],image_size[0])
+    for i,image_path in enumerate(all_files):
+        if i%100 == 0:
+            print("loading image (%d/%d)"%(i+1,len(all_files)))
+        image = ndimage.imread(image_path)        
+        image_down = sktrans.resize(image, image_size_reord)
+        feature_array[i] = image_down.transpose((2,0,1))
+        label[i] = "dog" in image_path
+    return feature_array, label
+    
+                  
+def training_test_datasets(all_files,n_images_train=500,n_images_test=500,image_size=(3,50,50)):
     """
     Returns a randomly selected test and train datasets of the specified size.
 
-    :param all_files:
-    :param n_images_train:
-    :param n_images_test:
-    :param image_size:
+    :param all_files: files to select train and test datasets
+    :param n_images_train: number of training images
+    :param n_images_test: number of test images
+    :param image_size: 
 
     :return: train_features, train_labels, test_features, test_labels
     """
-    perm = np.random.permutation(len(all_files))
-    image_files = np.array(all_files)[perm]
-    test_files = image_files[n_images_test:]
-    train_files = image_files[:n_images_train]
+    files_selected = np.random.choice(np.array(all_files),n_images_train+n_images_test,replace=False)
+    train_files = files_selected[:n_images_train]
+    test_files = files_selected[n_images_train:]
     print("Loading train set")
-    train_features, train_labels = sample_image_set(train_files, n_images=n_images_train, image_size=image_size)
+    train_features, train_labels = load_image_set(train_files, image_size=image_size)
 
     print("Loading test set")
-    test_features, test_labels = sample_image_set(test_files, n_images=n_images_test, image_size=image_size)
+    test_features, test_labels = load_image_set(test_files, image_size=image_size)
 
-    return train_features, train_labels, test_features, test_labels
+    return train_features, train_labels,files_selected[:n_images_train], test_features, test_labels, files_selected[n_images_train:]
+
 
 def plotROC(true_labels, test_probs_model):
     """
