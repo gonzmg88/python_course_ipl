@@ -13,6 +13,8 @@ The goal will be to make some predictions for the dogs vs cats classification pr
   * clone/download this repo.
 
 ## Program
+The workshop outline is the following:
+
 The workshop is divided in two parts dessigned to be covered in two days (~3-4h each day):
 
 ### Part I
@@ -25,23 +27,19 @@ The workshop is divided in two parts dessigned to be covered in two days (~3-4h 
   * Basic syntax and core structures (loops, functions, lists, ifs, strings...classes, dicts)
   * file operations (list directory, r/w files, get data from web,...)
   * Example dogs vs cats.
-* **coffee break!!**
 * `numpy` (`numpy.ipynb`):
   * basic matrices
   * read image as matrix
   * basics on matrix transformations.
-  * Construct data set for machine learning task.
-* `matplotlib`:
-  * plot image, histogram
 
 ### Part II
 * `scikit-learn` (`machine_learning.ipynb`):
   * predict label on image
+  * hyper-parameter selection via cross-validation
   * show prediction metrics (accuracy, ROC, confussion matrix).
 * Deep learning (`deep_learning.ipynb`):
   * Use pretrained CNN with `keras`.
 * Conclussions:
   * my way of working.
   * Where to go to learn more.
-
 
